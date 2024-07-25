@@ -1,14 +1,15 @@
 // URL for the compressed db.text.json file
 const DB_TEXT_URL = 'https://cdn.jsdelivr.net/gh/EhTagTranslation/DatabaseReleases/db.text.json.gz';
 
+// Function to translate data
 async function translateData(data) {
-    console.log('Translating data...');
+    console.info('Starting data translation...');
     const translationData = await getTranslationData();
 
-    const translatedData = data.map(item => {
-        // Optionally log only a summary of the item
-        console.debug(`Processing item with gid: ${item.gid}`);
+    let processedTagCount = 0;
+    const logInterval = 100; // Log progress every 100 tags
 
+    const translatedData = data.map(item => {
         item.tags = item.tags.map(tag => {
             const [namespace, tagName] = tag.split(':');
 
@@ -23,13 +24,18 @@ async function translateData(data) {
                     : tagName;
 
                 const translatedFullTag = `${translatedNamespace}:${translatedTag}`;
-                // Log only when translation differs from the original
-                if (translatedFullTag !== tag) {
-                    console.debug(`Translating tag "${tag}" to "${translatedFullTag}"`);
+
+                processedTagCount++;
+                if (processedTagCount % logInterval === 0) {
+                    console.info(`Translated ${processedTagCount} tags so far.`);
                 }
+
                 return translatedFullTag;
             } else {
-                console.debug(`No translation found for tag "${tag}"`);
+                processedTagCount++;
+                if (processedTagCount % logInterval === 0) {
+                    console.info(`Translated ${processedTagCount} tags so far.`);
+                }
                 return tag;
             }
         });
@@ -37,7 +43,7 @@ async function translateData(data) {
         return item;
     });
 
-    console.log('Data translation completed.');
+    console.info('Data translation completed.');
     return translatedData;
 }
 
@@ -74,11 +80,10 @@ async function fetchAndCacheDBText() {
 async function getTranslationData() {
     try {
         const data = await fetchAndCacheDBText();
-        // Optionally log a summary of the translation data
-        console.debug('Translation data loaded. Namespaces available:', data.data.map(ns => ns.namespace));
+        // Log only a summary of the translation data
+        console.info('Translation data loaded. Namespaces available:', data.data.map(ns => ns.namespace).join(', '));
         return data;
     } catch (error) {
         console.error('Error getting translation data:', error);
     }
 }
-
