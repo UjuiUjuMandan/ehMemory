@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload or Provide Data File</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Link to the new app.js file -->
+    <script src="js/app.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Upload or Provide Data File</h1>
+        <div class="upload-section">
+            <div class="file-upload">
+                <input type="file" id="fileInput" accept=".json">
+            </div>
+            <div class="url-upload">
+                <input type="text" id="urlInput" placeholder="Or provide URL to dataFromAPI.json">
+            </div>
+        </div>
+        <button>Load Data</button>
+        <div class="filters">
+            <h2>Filter Tags by Namespace</h2>
+            <div class="filters-content">
+                <label><input type="checkbox" value="Content/Fetishes"> Content/Fetishes</label>
+                <label><input type="checkbox" value="Technical"> Technical</label>
+                <label><input type="checkbox" value="Languages"> Languages</label>
+                <label><input type="checkbox" value="Characters"> Characters</label>
+                <label><input type="checkbox" value="Artist"> Artist</label>
+                <label><input type="checkbox" value="Cosplayer"> Cosplayer</label>
+                <label><input type="checkbox" value="Parody"> Parody</label>
+            </div>
+        </div>
+        <h2>Tag Word Cloud</h2>
+        <canvas id="wordCloud" width="800" height="600"></canvas>
+        <h2>Tag Bar Chart</h2>
+        <div id="barChart"></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/wordcloud@1.1.1/src/wordcloud2.js"></script>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <script src="js/dataProcessor.js"></script>
+    <script src="js/wordcloud.js"></script>
+    <script src="js/barchart.js"></script>
+</body>
+</html>

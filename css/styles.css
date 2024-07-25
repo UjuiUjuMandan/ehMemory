@@ -1,0 +1,71 @@
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+h1, h2 {
+    text-align: center;
+}
+
+.upload-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.file-upload, .url-upload {
+    flex: 1;
+    margin: 0 10px;
+}
+
+input[type="file"], input[type="text"], button {
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+}
+
+button {
+    margin-top: 20px;
+}
+
+canvas {
+    width: 100%;
+    height: auto;
+    max-height: 600px; /* Set a max height for better display */
+    margin: 20px 0;
+}
+
+#barChart {
+    width: 100%;
+    height: 500px;
+}
+
+.filters {
+    margin: 20px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.filters h2 {
+    margin-bottom: 15px;
+}
+
+.filters-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.filters label {
+    margin: 5px 10px;
+    display: flex;
+    align-items: center;
+}
+
