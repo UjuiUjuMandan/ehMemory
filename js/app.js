@@ -24,7 +24,7 @@ function loadData() {
                 processAndTranslateData(data, selectedNamespaces);
 
                 // 将加载的数据存储到 localStorage
-                localStorage.setItem('lastLoadedData', JSON.stringify(data));
+                sessionStorage.setItem('lastLoadedData', JSON.stringify(data));
             } catch (e) {
                 alert('Error parsing JSON file.');
                 console.error('Error parsing JSON file:', e);
@@ -45,8 +45,8 @@ function loadData() {
                 console.log('Data loaded from URL:', data);
                 processAndTranslateData(data, selectedNamespaces);
 
-                // 将加载的数据存储到 localStorage
-                localStorage.setItem('lastLoadedData', JSON.stringify(data));
+                // 将加载的数据存储到 sessionStorage
+                sessionStorage.setItem('lastLoadedData', JSON.stringify(data));
                 localStorage.setItem('lastLoadedURL', urlInput.value);
             })
             .catch(error => {
@@ -121,7 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // 如果有之前加载的数据和选中的命名空间，则加载它们
-    const lastLoadedData = localStorage.getItem('lastLoadedData');
+    const lastLoadedData = sessionStorage.getItem('lastLoadedData');
     const selectedNamespaces = JSON.parse(localStorage.getItem('selectedNamespaces')) || [];
 
     // 设置复选框的选中状态
