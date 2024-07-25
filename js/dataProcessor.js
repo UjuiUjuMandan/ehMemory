@@ -4,8 +4,8 @@ const excludeKeywords = [
     'sole female',
     'males only',
     'females only',
-		'translated',
-		'rewrite'
+    'translated', '翻译',
+    'rewrite'
 ];
 
 // Define the mapping of options to namespaces
@@ -27,7 +27,14 @@ function processTags(data, selectedNamespaces) {
 
     // Determine which namespaces are selected
     const namespacesToInclude = selectedNamespaces.flatMap(option => namespaceMappings[option] || []);
+    
+    // Default to excluding 'Technical' namespace if no namespaces are selected
+    const defaultExclusions = selectedNamespaces.length === 0 
+        ? namespaceMappings['Technical'] 
+        : [];
+    
     console.log('Namespaces to include:', namespacesToInclude);
+    console.log('Default exclusions:', defaultExclusions);
 
     // Track the number of excluded tags for debugging
     let excludedTagCount = 0;
@@ -48,7 +55,8 @@ function processTags(data, selectedNamespaces) {
 
                 // Check if the tag should be excluded
                 if (!excludeKeywords.some(keyword => tag.includes(keyword)) &&
-                    (namespacesToInclude.length === 0 || namespacesToInclude.includes(namespace))) {
+                    (namespacesToInclude.length === 0 || namespacesToInclude.includes(namespace)) &&
+                    !defaultExclusions.includes(namespace)) {
                     tagCounts[tagName] = (tagCounts[tagName] || 0) + 1;
                 } else {
                     excludedTagCount++;

@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Upload or Provide Data File</title>
     <link rel="stylesheet" href="css/styles.css">
-    <!-- Link to the new app.js file -->
     <script src="js/app.js" defer></script>
 </head>
 <body>
@@ -19,7 +18,8 @@
                 <input type="text" id="urlInput" placeholder="Or provide URL to dataFromAPI.json">
             </div>
         </div>
-        <button>Load Data</button>
+        <button id="loadDataButton">Load Data</button>
+        <button id="toggleLanguageButton">切换到中文</button>
         <div class="filters">
             <h2>Filter Tags by Namespace</h2>
             <div class="filters-content">
@@ -40,8 +40,11 @@
 
     <script src="https://cdn.jsdelivr.net/npm/wordcloud@1.1.1/src/wordcloud2.js"></script>
     <script src="https://d3js.org/d3.v6.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pako/2.0.4/pako.min.js"></script>
     <script src="js/dataProcessor.js"></script>
     <script src="js/wordcloud.js"></script>
     <script src="js/barchart.js"></script>
+    <script src="js/translation.js"></script>
 </body>
 </html>
+
