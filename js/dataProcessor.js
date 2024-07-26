@@ -1,11 +1,12 @@
 // Define keywords to be excluded
 const excludeKeywords = [
-    'sole male',
-    'sole female',
-    'males only',
-    'females only',
+    'sole male', '单男主',
+    'sole female', '单女主',
+    'males only', '纯男性',
+    'females only', '纯女性',
     'translated', '翻译',
-    'rewrite'
+    'rewrite', '改写',
+    'original', '原创'
 ];
 
 // Define the mapping of options to namespaces
